@@ -1,60 +1,38 @@
-Using ``add_integer``
------------------------
-
-Parameter "b" is defaulted to int "98"
-Makes sure the parameters are type int
-Returns the sum of the parameters
-
-First import ``add_integer``
-
-    >>> add_integer = __import__('0-add_integer').add_integer
-
-Now use it:
-
-Basic usage:
-    >>> add_integer(1, 2)
-    3
-
-Negative input:
-    >>> add_integer(100, -2)
-    98
-
-One input:
-    >>> add_integer(2)
-    100
-
-Float and negative input:
-    >>> add_integer(100.3, -2)
-    98
-
-Float overflow:
-    >>> add_integer(1500.5)
-    1598
-
-Float NaN:
-    >>> add_integer(float('NaN'))
-    Traceback (most recent call last):
-    ...
-    ValueError: cannot convert float NaN to integer
-
-String input:
-    >>> add_integer(4, "School")
-    Traceback (most recent call last):
-    ...
-    TypeError: b must be an integer
-
-None input:
-    >>> add_integer(None)
-    Traceback (most recent call last):
-    ...
-    TypeError: a must be an integer
-
-Double negative float input:
-    >>> add_integer(-100.5, -10.8)
-    -110
-
-Double string input:
-    >>> add_integer("holberton", "school")
-    Traceback (most recent call last):
-    ...
-    TypeError: a must be an integer
+>>> add_integer = __import__("0-add_integer").add_integer
+>>> add_integer(1, 2)
+3
+>>> add_integer(100, -2)
+98
+>>> add_integer(2)
+100
+>>> add_integer(100.3, -2)
+98
+>>> add_integer()
+Traceback (most recent call last):
+TypeError: add_integer() missing 1 required positional argument: 'a'
+>>> add_integer('t', 3)
+Traceback (most recent call last):
+TypeError: a must be an integer
+>>> add_integer(s, 1)
+Traceback (most recent call last):
+NameError: name 's' is not defined
+>>> add_integer(.3)
+98
+>>> add_integer(-100.3)
+-2
+>>> add_integer(.999999999999999, .999999999999999999)
+1
+>>> add_integer(.33333333333333, .9999999999999999)
+0
+>>> add_integer(float('nan'), 2)
+Traceback (most recent call last):
+ValueError: cannot convert float NaN to integer
+>>> add_integer(float('inf'), 2)
+Traceback (most recent call last):
+OverflowError: cannot convert float infinity to integer
+>>> add_integer(-float('inf'), 2)
+Traceback (most recent call last):
+OverflowError: cannot convert float infinity to integer
+>>> add_integer(2, float('inf'))
+Traceback (most recent call last):
+OverflowError: cannot convert float infinity to integer
