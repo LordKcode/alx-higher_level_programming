@@ -1,35 +1,44 @@
 #!/usr/bin/python3
-""" text_indentation returns "text" in the specified format:
-2 newlines after each ['.', '?', ':']
+"""
+prints text in special format
 """
 
 
 def text_indentation(text):
-    """ prints "text" with 2 newlines after each of these char: ['.', '?', ':']
-    checks if "text" is a str
-    first loop removes spaces after each required chars
-    second loop adds 2 newlines after each required chars
+    """prints a text with 2 new lines after each of these characters: . ? :
+
+    Args:
+        text (str): a string
+
+    Raises:
+        TypeError: if text is not a string
     """
-    if type(text) != str:
+    new = ""
+    substring = ""
+    temp = [] * 2
+    flag = 0
+
+    if type(text) is not str:
         raise TypeError("text must be a string")
-    toCatAfter = ['.', '?', ':']
 
-    # Removes the space after special chars
-    idx = 0
-    for items in text:
-        if items in toCatAfter:
-            if text[idx + 1] == " ":
-                text = text[:idx + 1] + text[idx + 2:]
-        else:
-            idx += 1
-
-    # Cats '\n\n' after the special char with removed space
-    idx = 0
-    for items in text:
-        if items in toCatAfter:
-            text = text[:idx + 1] + '\n\n' + text[idx + 1:]
-            idx += 3
-        else:
-            idx += 1
-
-    print(text, end='')
+    for i in range(len(text)):
+        if i < len(text) and text[i] == '.' or text[i] == '?'\
+           or text[i] == ':':
+            if flag == 0:
+                temp = text.split(text[i], 1)
+                flag = 1
+            else:
+                temp = substring.split(text[i], 1)
+            new += temp[0].lstrip(' ') + text[i]
+            substring = temp[1]
+            print("{:s}".format(new))
+            print()
+            new = ""
+    if flag == 0:
+        text = text.lstrip(' ')
+        text = text.rstrip(' ')
+        print("{:s}".format(text), end="")
+    else:
+        substring = substring.lstrip(' ')
+        substring = substring.rstrip(' ')
+        print("{:s}".format(substring), end="")
