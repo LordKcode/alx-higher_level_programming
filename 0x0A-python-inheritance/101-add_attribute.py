@@ -1,13 +1,12 @@
 #!/usr/bin/python3
-def add_attribute(o, name="", given_name=""):
-    """add a new attribute to an object
-    Args:
-        name(str): name
-        given_name(str): given name
-    Raise:
-        TypeError: if new attribute is not added
-    """
-    obj = o
-    if not hasattr(obj, "__dict__"):
+"""
+    101-add_attribute module
+    Function that adds a new attribute to an object if it’s possible
+"""
+
+
+def add_attribute(cla, attri, value):
+    """Function that adds a new attribute to an object if it's possible"""
+    if not(hasattr(cla, '__dict__')):
         raise TypeError("can't add new attribute")
-    setattr(obj, name, given_name)
+    setattr(cla, attri, value)
